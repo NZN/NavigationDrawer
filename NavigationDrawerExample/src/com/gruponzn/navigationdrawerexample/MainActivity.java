@@ -11,6 +11,8 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 
+import com.gruponzn.navigationdrawerexample.fragments.PagePrincipalFragment;
+import com.gruponzn.navigationdrawerexample.fragments.PlanetFragment;
 import com.gruponzn.navigationdrawerlibrary.NavigationDrawer;
 
 public class MainActivity extends Activity {
@@ -47,28 +49,35 @@ public class MainActivity extends Activity {
 				R.string.drawer_open, R.string.drawer_close, false);
 
 		if (savedInstanceState == null) {
-			selectItem(0);
+			selectItem(1);
 		}
 
 	}
 
 	private void selectItem(int position) {
 
-		// Create a new fragment and specify the planet to show based on
-		// position
+		Fragment fragment;
+		switch (position) {
+		case 0:
 
-		Fragment fragment = new PlanetFragment();
-		Bundle args = new Bundle();
+			fragment = new PagePrincipalFragment();
 
-		args.putInt(PlanetFragment.ARG_PLANET_NUMBER, position);
-		fragment.setArguments(args);
+			break;
 
-		// Insert the fragment by replacing any existing fragment
+		default:
+
+			fragment = new PlanetFragment();
+			Bundle args = new Bundle();
+
+			args.putInt(PlanetFragment.ARG_PLANET_NUMBER, position);
+			fragment.setArguments(args);
+
+			break;
+		}
+
 		FragmentManager fragmentManager = getFragmentManager();
 		fragmentManager.beginTransaction()
 				.replace(R.id.content_frame, fragment).commit();
-
-		// Highlight the selected item, update the title, and close the drawer
 
 		mMenu.setItemChecked(position, true);
 		mMenu.closeDrawer();
