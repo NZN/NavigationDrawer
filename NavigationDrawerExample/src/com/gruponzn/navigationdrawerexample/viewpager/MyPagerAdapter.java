@@ -1,10 +1,10 @@
 package com.gruponzn.navigationdrawerexample.viewpager;
 
-import com.gruponzn.navigationdrawerexample.fragments.PagerFragment;
-
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.support.v13.app.FragmentStatePagerAdapter;
+
+import com.gruponzn.navigationdrawerexample.fragments.PagerFragment;
 
 public class MyPagerAdapter extends FragmentStatePagerAdapter {
 
@@ -33,4 +33,21 @@ public class MyPagerAdapter extends FragmentStatePagerAdapter {
 		return 3;
 	}
 
+	@Override
+	public CharSequence getPageTitle(int position) {
+
+		switch (position) {
+		case 0:
+			return "Pagina 1";
+
+		case 1:
+			return "Pagina 2";
+
+		case 2:
+			return "Pagina 3";
+
+		default:
+			return null;
+		}
+	}
 }
