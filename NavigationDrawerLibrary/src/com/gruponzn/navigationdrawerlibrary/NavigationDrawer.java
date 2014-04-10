@@ -37,6 +37,10 @@ public class NavigationDrawer {
 
 	}
 
+	public ListView getDrawerList() {
+		return mDrawerList;
+	}
+
 	public void setOnItemClickListener(ListView.OnItemClickListener listener) {
 		mDrawerList.setOnItemClickListener(listener);
 
