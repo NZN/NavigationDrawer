@@ -1,4 +1,9 @@
-package com.gruponzn.navigationdrawerexample;
+package com.gruponzn.navigationdrawerexample.fragments;
+
+import com.gruponzn.navigationdrawerexample.R;
+import com.gruponzn.navigationdrawerexample.R.array;
+import com.gruponzn.navigationdrawerexample.R.id;
+import com.gruponzn.navigationdrawerexample.R.layout;
 
 import android.app.Fragment;
 import android.os.Bundle;
