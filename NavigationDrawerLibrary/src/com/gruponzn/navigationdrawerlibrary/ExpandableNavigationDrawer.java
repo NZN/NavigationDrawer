@@ -44,6 +44,9 @@ public class ExpandableNavigationDrawer {
 
 	public void setAdapter(ExpandableListAdapter adapter) {
 		this.mDrawerList.setAdapter(adapter);
+		
+		if (null != this.mDrawerToggle)
+			mDrawerToggle.syncState();
 	}
 
 	public void setItemChecked(int position, boolean value) {
@@ -66,11 +69,20 @@ public class ExpandableNavigationDrawer {
 		return this.mDrawerLayout.isDrawerOpen(this.mDrawerList);
 	}
 
+	public void collapse() {
+		for (int i = 0; i < mDrawerList.getAdapter().getCount(); i++)
+			mDrawerList.collapseGroup(i);
+	}
+	
 	public boolean onOptionsItemSelected(MenuItem menu) {
 		if (mDrawerToggle != null)
 			return this.mDrawerToggle.onOptionsItemSelected(menu);
 		else
 			return false;
+	}
+	
+	public void rebuild() {
+		mDrawerList.postInvalidate();
 	}
 
 	public void setActionBarDrawerToggle(int drawerImageRes,
