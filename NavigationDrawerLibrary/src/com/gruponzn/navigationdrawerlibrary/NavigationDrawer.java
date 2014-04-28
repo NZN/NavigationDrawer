@@ -1,6 +1,7 @@
 package com.gruponzn.navigationdrawerlibrary;
 
 import android.app.Activity;
+import android.content.res.Configuration;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
 import android.view.MenuItem;
@@ -48,10 +49,21 @@ public class NavigationDrawer {
 
 	public void setAdapter(ListAdapter adapter) {
 		this.mDrawerList.setAdapter(adapter);
+
+		if (null != this.mDrawerToggle)
+			mDrawerToggle.syncState();
 	}
 
 	public void setItemChecked(int position, boolean value) {
 		this.mDrawerList.setItemChecked(position, value);
+	}
+
+	public void syncState() {
+		this.mDrawerToggle.syncState();
+	}
+
+	public void onConfigurationChanged(Configuration newConfig) {
+		this.mDrawerToggle.onConfigurationChanged(newConfig);
 	}
 
 	public void closeDrawer() {
