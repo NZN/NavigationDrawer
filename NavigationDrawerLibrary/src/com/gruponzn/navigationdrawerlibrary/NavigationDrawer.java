@@ -17,6 +17,8 @@ public class NavigationDrawer {
 	private ActionBarDrawerToggle mDrawerToggle;
 	private CharSequence mTitle;
 
+	OnDrawerOpenedListener mOnDrawerOpenedListener;
+
 	public NavigationDrawer(Activity activity, int resDrawerLayout,
 			int resDrawerList) {
 		this.mActivity = activity;
@@ -35,7 +37,6 @@ public class NavigationDrawer {
 		this.mActivity = activity;
 		this.mDrawerLayout = DrawerLayout;
 		this.mDrawerList = DrawerList;
-
 	}
 
 	public ListView getDrawerList() {
@@ -84,7 +85,9 @@ public class NavigationDrawer {
 	public void setActionBarDrawerToggle(int drawerImageRes,
 			final int openDrawerContentDescRes,
 			final int closeDrawerContentDescRes,
-			final boolean changeTitleWhenOpen) {
+			final boolean changeTitleWhenOpen, OnDrawerOpenedListener listener) {
+
+		mOnDrawerOpenedListener = listener;
 
 		mDrawerToggle = new ActionBarDrawerToggle(mActivity, mDrawerLayout,
 				drawerImageRes, openDrawerContentDescRes,
@@ -100,6 +103,7 @@ public class NavigationDrawer {
 
 				mActivity.invalidateOptionsMenu();
 
+				mOnDrawerOpenedListener.drawerIsOpened(false);
 			}
 
 			@Override
@@ -114,6 +118,8 @@ public class NavigationDrawer {
 							mActivity.getString(openDrawerContentDescRes));
 				}
 				mActivity.invalidateOptionsMenu();
+
+				mOnDrawerOpenedListener.drawerIsOpened(true);
 
 			}
 
