@@ -16,6 +16,7 @@ public class NavigationDrawer {
 	private final ListView mDrawerList;
 	private ActionBarDrawerToggle mDrawerToggle;
 	private CharSequence mTitle;
+	private boolean mEnableMenu = true;
 
 	OnDrawerOpenedListener mOnDrawerOpenedListener;
 
@@ -75,8 +76,20 @@ public class NavigationDrawer {
 		return this.mDrawerLayout.isDrawerOpen(this.mDrawerList);
 	}
 
+	public void enableSwypeOpenMenu(boolean enable) {
+
+		this.mEnableMenu = enable;
+
+		if (mEnableMenu)
+			mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
+		else
+			mDrawerLayout
+					.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+
+	}
+
 	public boolean onOptionsItemSelected(MenuItem menu) {
-		if (mDrawerToggle != null)
+		if (mDrawerToggle != null && mEnableMenu == true)
 			return this.mDrawerToggle.onOptionsItemSelected(menu);
 		else
 			return false;
