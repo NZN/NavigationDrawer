@@ -74,6 +74,10 @@ public class ExpandableNavigationDrawer {
 			mDrawerList.collapseGroup(i);
 	}
 	
+	public ExpandableListView getDrawerList() {
+		return this.mDrawerList;
+	}
+	
 	public boolean onOptionsItemSelected(MenuItem menu) {
 		if (mDrawerToggle != null)
 			return this.mDrawerToggle.onOptionsItemSelected(menu);
